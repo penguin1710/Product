@@ -47,16 +47,17 @@ namespace WebApplication1.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,Name,Price,Expire")] Product product)
+        public ActionResult Create(Product model)
         {
+            ValidateProduct(model);
             if (ModelState.IsValid)
             {
-                db.Products.Add(product);
+                db.Products.Add(model);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(product);
+            return View(model);
         }
 
         // GET: Products/Edit/5
@@ -79,15 +80,27 @@ namespace WebApplication1.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,Name,Price,Expire")] Product product)
+        public ActionResult Edit(Product model)
         {
+            ValidateProduct(model);
             if (ModelState.IsValid)
             {
-                db.Entry(product).State = EntityState.Modified;
+                db.Entry(model).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(product);
+            return View(model);
+        }
+
+        private void ValidateProduct(Product model)
+        {
+            if (String.IsNullOrEmpty(model.Name))
+            {
+                ModelState.AddModelError("Name","Phải có tên sản phẩm.");
+            }
+            if (model.Price <= 0){
+                ModelState.AddModelError("Price", "Giá bán phải lớn hơn 0.");
+            }
         }
 
         // GET: Products/Delete/5
