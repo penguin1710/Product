@@ -1,0 +1,41 @@
+﻿@model WebApplication1.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Thông tin sản phẩm</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Tên sản phẩm
+        </dt>
+
+        <dd>
+            @Model.Name
+        </dd>
+
+        <dt>
+            Giá bán
+        </dt>
+
+        <dd>
+            @Model.Price.ToString("N0")
+        </dd>
+
+        <dt>
+            Hạn sử dụng
+        </dt>
+
+        <dd>
+            @Model.Expire.ToString("dd/MM/yyyy")
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Sửa", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Trở về trang chủ", "Index")
+</p>
