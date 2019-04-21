@@ -37,7 +37,14 @@ namespace WebApplication1.Tests.Controllers
             var model = result1.Model as Product;
             Assert.IsNotNull(model);
             Assert.AreEqual(item.id, model.id);
+        }
 
+        [TestMethod]
+        public void TestCreate()
+        {
+            var controller = new ProductsController();
+            var result = controller.Create() as ViewResult;
+            Assert.IsNotNull(result);
         }
     }
 }
