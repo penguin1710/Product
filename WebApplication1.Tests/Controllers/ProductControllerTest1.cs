@@ -24,7 +24,7 @@ namespace WebApplication1.Tests.Controllers
         }
 
         [TestMethod]
-        public void TestEdit()
+        public void TestEditGet()
         {
             var controller = new ProductsController();
             var result0 = controller.Edit(0);
@@ -40,7 +40,7 @@ namespace WebApplication1.Tests.Controllers
         }
 
         [TestMethod]
-        public void TestCreate()
+        public void TestCreateGet()
         {
             var controller = new ProductsController();
             var result = controller.Create() as ViewResult;
