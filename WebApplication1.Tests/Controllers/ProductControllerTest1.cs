@@ -50,27 +50,11 @@ namespace WebApplication1.Tests.Controllers
         [TestMethod]
         public void TestCreatePost()
         {
-            var controller = new ProductsController();
-            var result = controller.Create() as ViewResult;
-            Assert.IsNotNull(result);
         }
 
         [TestMethod]
         public void TestEditPost()
         {
-            {
-                var controller = new ProductsController();
-                var result0 = controller.Edit(0);
-                Assert.IsInstanceOfType(result0, typeof(HttpNotFoundResult));
-
-                var db = new ProductEntities();
-                var item = db.Products.First();
-                var result1 = controller.Edit(item.id) as ViewResult;
-                Assert.IsNotNull(result1);
-                var model = result1.Model as Product;
-                Assert.IsNotNull(model);
-                Assert.AreEqual(item.id, model.id);
-            }
         }
     }
 }
